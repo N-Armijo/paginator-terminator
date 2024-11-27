@@ -3,34 +3,39 @@
 {% block content %}
     <div class="container mt-5">
         <h2 class="text-center mb-4">Lista de Categorias</h2>
-        <table class="table table-striped table-hover  ">
-            <thead class="table-secondary">
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for categoria in page_obj %}<!--Aqui no es categorias, ya que lo que envia la vista es page_obj-->
-                <tr>
-                    <td>{{ categoria.nombre }}</td>
-                    <td>
-                        <a href="{% url 'editar_categoria' categoria.id %}" class="btn btn-sm btn-warning me-2">Editar</a>
-                        <a href="{% url 'eliminar_categoria' categoria.id %}" class="btn btn-sm btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="pagination">
-            {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}" class="me-2">Anterior</a>
-            {% endif %}
-            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="ms-2">Siguiente</a>
-            {% endif %}
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <table class="table table-striped table-hover  ">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th >Nombre</th>
+                            <th >Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria in page_obj %}<!--Aqui no es categorias, ya que lo que envia la vista es page_obj-->
+                        <tr>
+                            <td>{{ categoria.nombre }}</td>
+                            <td>
+                                <a href="{% url 'editar_categoria' categoria.id %}" class="btn btn-sm btn-warning me-2">Editar</a>
+                                <a href="{% url 'eliminar_categoria' categoria.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" class="me-2">Anterior</a>
+                    {% endif %}
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="ms-2">Siguiente</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
+        
         <div class="text-center mt-4">
             <a href="{% url 'crear_tarea' %}" class="btn btn-primary">Crear nueva tarea</a>
         </div>
