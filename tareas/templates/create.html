@@ -5,30 +5,34 @@
 {% block content %}
     <div class="container mt-5">
         <h2 class="text-center mb-4">Crear Tarea</h2>
-        <form method="POST" class="p-4 border rounded shadow-sm">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="titulo" class="form-label">Título</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Escribe el título">
-            </div>
-            <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripción</label>
-                <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required placeholder="Escribe la descripción"></textarea>
-            </div>
-            <div class="mb-3">
-                <select name="categoria">
-                    <option value="">Selecciona una categoría</option>
-                    {% for categoria in categorias %}
-                        <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Crear Tarea</button>
-        </form>
-        <button class="btn btn-primary w-100"><a class="btn btn-primary w-100" href="{% url 'listar_tarea'%}"  >Ir a lista de tareas</a></button>
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <form method="POST" class="p-4 border rounded shadow-sm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Escribe el título">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required placeholder="Escribe la descripción"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <select name="categoria" class="form-select">
+                            <option value="">Selecciona una categoría</option>
+                            {% for categoria in categorias %}
+                            <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                        <a href="{% url 'crear_categoria' %}" class="mt-2">Crear nueva Categoria</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Crear Tarea</button>
+                </form>
+                <a class="btn btn-outline-secondary w-40 mt-2" href="{% url 'listar_tarea'%}"  >Volver a lista tareas</a>
+                <div class="text-center mt-4">
+                </div>
 
-        <div class="text-center mt-4">
-            <a href="{% url 'crear_categoria' %}" class="btn btn-primary">Crear nueva Categoria</a>
+            </div>
         </div>
     </div>
 {% endblock %}

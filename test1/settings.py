@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tareas',
-    'categorias'
+    'categorias', 
+    'usuarios'
 
 ]
 
@@ -101,6 +102,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+#cambios para las rutas personalizadas
+LOGIN_REDIRECT_URL = 'listar_tarea'
+LOGIN_URL = 'iniciar_sesion'
+
 
 
 # Internationalization

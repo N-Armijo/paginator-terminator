@@ -19,11 +19,12 @@ from django.urls import path
 from tareas import views
 from categorias import views as cat_views
 from django.contrib.auth import views as auth_views
+from usuarios import views as usuarios_views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    # path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    # path('accounts/logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('crear_tarea', views.create_tarea, name='crear_tarea'),
     path('', views.listar_tareas, name='listar_tarea'),
     path('actualizar/<int:id>', views.actualizar_tarea, name='actualizar_tarea'),
@@ -32,4 +33,7 @@ urlpatterns = [
     path('crear_categoria/', cat_views.crear_categoria, name='crear_categoria'),
     path('editar_categoria/<int:id>/', cat_views.editar_categoria, name='editar_categoria'),
     path('eliminar_categoria/<int:id>/', cat_views.eliminar_categoria, name='eliminar_categoria'),
+    path('registro/', usuarios_views.registro_usuario, name='registro_usuario'),
+    path('login/', usuarios_views.iniciar_sesion, name='iniciar_sesion'),
+    path('logout/', usuarios_views.cerrar_sesion, name='cerrar_sesion'),
 ]
