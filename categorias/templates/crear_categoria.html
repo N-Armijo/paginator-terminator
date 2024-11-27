@@ -3,14 +3,18 @@
 {% block content %}
     <div class="container mt-5">
         <h2 class="text-center mb-4">Crear Categoria</h2>
-        <form method="POST" class="p-4 border rounded shadow-sm">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Escribe el nombre">
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <form method="POST" class="p-4 border rounded shadow-sm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Escribe el nombre de la categoria">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Crear Categoria</button>
+                </form>
+                <a class="btn btn-outline-secondary mt-2" href="{% url 'listar_categorias'%}"  >Ver listado de Categorias</a>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Crear Categoria</button>
-        </form>
-        <button class="btn btn-primary w-100"><a class="btn btn-primary w-100" href="{% url 'listar_categorias'%}"  >Ir a lista de Categorias</a></button>
+        </div>
     </div>   
 {% endblock %}

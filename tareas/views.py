@@ -20,13 +20,36 @@ def create_tarea(request):
     return render(request,'create.html', {'categorias': categorias})
 
 def listar_tareas(request):
-    tareas = Tarea.objects.select_related('categoria').all().order_by('-fecha_creacion')
-    print(tareas)
+    # Recoger los filtros de la URL (si existen)
+    titulo = request.GET.get('titulo', '') # el segundo param es por si no lo encuentra no de error
+    descripcion = request.GET.get('descripcion', '')
+    categoria_id = request.GET.get('categoria', '')
+    
+    # trae todas las tareas
+    tareas = Tarea.objects.select_related('categoria').all()
+
+    # aplicar filtros
+    if titulo:
+        tareas = tareas.filter(titulo__icontains=titulo)  # filtro por titulo sin importar min/may
+    if descripcion:
+        tareas = tareas.filter(descripcion__icontains=descripcion)  # Filtro por descripcion, poco viable como filtro, ya que campo muy largo
+    if categoria_id:
+        tareas = tareas.filter(categoria__id=categoria_id)  # Filtro por categoria (suponiendo que categoria_id es un número)
+
     paginator = Paginator(tareas, 5)  # 5 tareas por página
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    # contexto = {'tareas':tareas}
-    return render(request,'listar_tareas.html', {'page_obj': page_obj})
+
+    # Obtener todas las categorías para el filtro de categoría
+    categorias = Categoria.objects.all()
+
+    return render(request, 'listar_tareas.html', {
+        'page_obj': page_obj,
+        'titulo': titulo,
+        'descripcion': descripcion,
+        'categoria_id': categoria_id,
+        'categorias': categorias
+    })
 
 @login_required
 def actualizar_tarea(request,id):
