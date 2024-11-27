@@ -46,7 +46,7 @@ Este proyecto es una practica en Django, que incluye funciones CRUD (Crear, Leer
 
 ## **Instalación de Dependencias**
 
-Asegúrate de tener un archivo **`requirements.txt`** en el proyecto con las dependencias necesarias.
+El archivo **`requirements.txt`** en el proyecto contiene las dependencias necesarias para poder recrear las condiciones en la que fue creado el proyecto.
 
 1. Para instalar las dependencias:
    ```bash
