@@ -81,7 +81,7 @@ El proyecto estará disponible en `http://127.0.0.1:8000/`.
 
 ## **Pasos Generales para Usar la Aplicación**
 
-1. Accede al proyecto en tu navegador en `http://127.0.0.1:8000/movies/`.
+1. Accede al proyecto en tu navegador en `http://127.0.0.1:8000/`.
 2. Funciones principales de la aplicación:
    - **Crear :** Completa el formulario y agrega una nueva .
    - **Listar :** Consulta todas las  disponibles en una tabla.
